@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +14,8 @@ public class DigitalClock extends Application {
   private double screenW = 1000.0;
   private double screenH = 600.0;
   private Date currentTime = new Date();
+  private GridPane leftColonChar = new GridPane();
+  private GridPane rightColonChar = new GridPane();
 
   public static void main(String[] args) throws Exception {
     launch(args);
@@ -43,21 +42,26 @@ public class DigitalClock extends Application {
     GridPane onesMinuteDigit = ledGen.getDigitItem(onesMinuteStr);
     GridPane tensSecondDigit = ledGen.getDigitItem(tensSecondStr);
     GridPane onesSecondDigit = ledGen.getDigitItem(onesSecondStr);
+    // GridPane firstColon = ledGen.getColonCharacter();
+    // GridPane secondColon = ledGen.getColonCharacter();
+    this.leftColonChar = ledGen.getColonCharacter();
+    this.rightColonChar = ledGen.getColonCharacter();
 
     GridPane ledBank = new GridPane();
     ledBank.setHgap(10);
     ledBank.setVgap(10);
     ledBank.setPadding(new Insets(0, 10, 0, 10));
 
-    ledBank.setStyle("-fx-background-color: darkturquoise;");
+    // ledBank.setStyle("-fx-background-color: black;");
     ledBank.setGridLinesVisible(true);
     ledBank.setAlignment(Pos.BASELINE_CENTER);
 
-    // var tensHourDigit = getTensHourDigitOld();
     ledBank.add(tensHourDigit, 0, 0);
     ledBank.add(onesHourDigit, 1, 0);
+    ledBank.add(this.leftColonChar, 2, 0);
     ledBank.add(tensMinuteDigit, 3, 0);
     ledBank.add(onesMinuteDigit, 4, 0);
+    ledBank.add(this.rightColonChar, 5, 0);
     ledBank.add(tensSecondDigit, 6, 0);
     ledBank.add(onesSecondDigit, 7, 0);
 
@@ -68,6 +72,9 @@ public class DigitalClock extends Application {
     timeline.play();
 
     Scene ledReadoutScene = new Scene(ledBank, screenW, screenH);
+    primaryStage.setAlwaysOnTop(true);
+    primaryStage.setFullScreen(true);
+    primaryStage.setFullScreenExitHint("Click anywhere in the Window to exit Full Screen Mode");
     primaryStage.setScene(ledReadoutScene);
     primaryStage.show();
 

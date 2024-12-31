@@ -9,7 +9,7 @@ public class LedGenerator {
   private String vElStyle = " width: 12px; height: 120px;";
   private String hElStyle = " width: 120px; height: 12px;";
   private String elementOn = "-fx-background-color: red;";
-  private String elementOff = "-fx-background-color: black;";
+  private String elementOff = "-fx-background-color: transparent;";
 
   /*
    * This method returns a GridPane object that represents a digit on a 7-segment.
@@ -264,6 +264,38 @@ public class LedGenerator {
     setElements(digitGridPane, ulBar, topBar, urBar, blBar, bottomBar, brBar, middleBar);
   }
 
+  public GridPane getColonCharacter() {
+    VBox upperDot = new VBox();
+    upperDot.setStyle(this.elementOn.concat("width: 12px; height: 12px;"));
+    VBox lowerDot = new VBox();
+    lowerDot.setStyle(this.elementOn.concat("width: 12px; height: 12px;"));
+
+    GridPane colonGridPane = new GridPane();
+    colonGridPane.setAlignment(Pos.CENTER);
+    colonGridPane.setGridLinesVisible(true);
+
+    ColumnConstraints col1 = new ColumnConstraints();
+    col1.setPrefWidth(12.0);
+    colonGridPane.getColumnConstraints().add(col1);
+
+    RowConstraints row1 = new RowConstraints();
+    row1.setPrefHeight(84.0);
+    RowConstraints row2 = new RowConstraints();
+    row2.setPrefHeight(12.0);
+    RowConstraints row3 = new RowConstraints();
+    row3.setPrefHeight(84.0);
+    RowConstraints row4 = new RowConstraints();
+    row4.setPrefHeight(12.0);
+    RowConstraints row5 = new RowConstraints();
+    row5.setPrefHeight(84.0);
+    colonGridPane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
+
+    colonGridPane.add(upperDot, 0, 1);
+    colonGridPane.add(lowerDot, 0, 3);
+
+    return colonGridPane;
+  }
+
   private void getDigitZero(GridPane digitGridPane) {
     // ON
     VBox ulBar = new VBox();
@@ -315,7 +347,7 @@ public class LedGenerator {
 
   public GridPane InitGridPane() {
     GridPane digitGridPane = new GridPane();
-    digitGridPane.setStyle("-fx-background-color: dimgray; width: 100%; height: 100%;");
+    digitGridPane.setStyle("width: 100%; height: 100%;");
     digitGridPane.setGridLinesVisible(true);
     digitGridPane.setAlignment(Pos.BASELINE_CENTER);
 
