@@ -6,18 +6,24 @@ The primary goal of this project is to explore developing Java apps for Linux.
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The workspace contains several folders by default, where:
 
 - `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- JRE System Library (see Java Projects Extension for this view)
+- Reference Libraries (see Java Projects Extension for this view)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Compiled output files will be generated and placed in the `bin` folder by default.
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
 ## Dependency Management
 
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+
+Notes:
+
+- JavaFX SDK can be downloaded separately and placed in a common folder where Java build can access its `lib` folder.
+- Other dependencies might be elsewhere in the local filesystem (such as the Java JDK). Take a peek at `JAVA_HOME` env variable or VS Code Extensions for a clue about where JDK has been installed and what version.
 
 ## Prerequisites
 
@@ -42,15 +48,17 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 Build:
 
 1. Decide where to place generated class files
-1. Get path to JavaFX lib directory.
+1. Get path to JavaFX bin directory.
 1. Get list of modules included in the Java project i.e. `javafx.fxml` etc.
 1. Find `DigitalClock.App` (the source code, usually in `src`).
-1. Execute `javac -d {GENERATED_CLASS_FILES_DIR} --module-path {JAVAFX_LIB_DIR} --add-modules {LIST_OF_NAMED_JAVAFX_MODULES} src\DigitalClock.java`
+1. Execute `javac -d {GENERATED_CLASS_FILES_DIR} --module-path {JAVAFX_LIB_DIR} --add-modules {CSVLIST_OF_NAMED_JAVAFX_MODULES} --class-path .\src src\DigitalClock.java`
+
+_Note_: No output is good screen output in this case.
 
 Run:
 
 1. Find the generated `.class` file and CHDIR to that directory for simplicity.
-1. Execute `java --module-path {JAVAFX_LIB_DIR} --add-modules {LIST_OF_NAMED_JAVAFX_MODULES} DigitalClock`
+1. Execute `java --module-path {JAVAFX_BIN_DIR} --add-modules {LIST_OF_NAMED_JAVAFX_MODULES} DigitalClock`
 
 ## Publish and Deploy
 

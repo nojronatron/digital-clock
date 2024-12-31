@@ -235,9 +235,9 @@ public class LedGenerator {
 
     // OFF
     VBox ulBar = new VBox();
-    ulBar.setStyle(getHElOnStyle());
+    ulBar.setStyle(getHElOffStyle());
     VBox brBar = new VBox();
-    brBar.setStyle(getVElOnStyle());
+    brBar.setStyle(getVElOffStyle());
 
     setElements(digitGridPane, ulBar, topBar, urBar, blBar, bottomBar, brBar, middleBar);
   }

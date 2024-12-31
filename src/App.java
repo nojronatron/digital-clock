@@ -23,14 +23,23 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("LED Clock");
     String currTime = convertTimeToHMS(this.currentTime);
+    System.out.println("Current Time: " + currTime);
+    String tensHourStr = currTime.substring(0, 1);
+    String onesHourStr = currTime.substring(1, 2);
+    String tensMinuteStr = currTime.substring(3, 4);
+    String onesMinuteStr = currTime.substring(4, 5);
+    String tensSecondStr = currTime.substring(6, 7);
+    String onesSecondStr = currTime.substring(7, 8);
+    System.out.println("H, h, M, m, S, s: " + tensHourStr + ", " + onesHourStr + ", " + tensMinuteStr + ", "
+        + onesMinuteStr + ", " + tensSecondStr + ", " + onesSecondStr);
 
     LedGenerator ledGen = new LedGenerator();
-    GridPane tensHourDigit = ledGen.getDigitItem(currTime.substring(0, 1));
-    GridPane onesHourDigit = ledGen.getDigitItem(currTime.substring(1, 2));
-    GridPane tensMinuteDigit = ledGen.getDigitItem(currTime.substring(3, 4));
-    GridPane onesMinuteDigit = ledGen.getDigitItem(currTime.substring(4, 5));
-    GridPane tensSecondDigit = ledGen.getDigitItem(currTime.substring(6, 7));
-    GridPane onesSecondDigit = ledGen.getDigitItem(currTime.substring(7, 8));
+    GridPane tensHourDigit = ledGen.getDigitItem(tensHourStr);
+    GridPane onesHourDigit = ledGen.getDigitItem(onesHourStr);
+    GridPane tensMinuteDigit = ledGen.getDigitItem(tensMinuteStr);
+    GridPane onesMinuteDigit = ledGen.getDigitItem(onesMinuteStr);
+    GridPane tensSecondDigit = ledGen.getDigitItem(tensSecondStr);
+    GridPane onesSecondDigit = ledGen.getDigitItem(onesSecondStr);
 
     GridPane ledBank = new GridPane();
     ledBank.setHgap(10);
