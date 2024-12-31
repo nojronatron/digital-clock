@@ -1,7 +1,8 @@
 import java.util.Date;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -11,8 +12,8 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class DigitalClock extends Application {
-  private double screenW = 1000.0;
-  private double screenH = 600.0;
+  private double screenW = 1200.0;
+  private double screenH = 360.0;
   private Date currentTime = new Date();
   private GridPane leftColonChar = new GridPane();
   private GridPane rightColonChar = new GridPane();
@@ -42,19 +43,15 @@ public class DigitalClock extends Application {
     GridPane onesMinuteDigit = ledGen.getDigitItem(onesMinuteStr);
     GridPane tensSecondDigit = ledGen.getDigitItem(tensSecondStr);
     GridPane onesSecondDigit = ledGen.getDigitItem(onesSecondStr);
-    // GridPane firstColon = ledGen.getColonCharacter();
-    // GridPane secondColon = ledGen.getColonCharacter();
+
     this.leftColonChar = ledGen.getColonCharacter();
     this.rightColonChar = ledGen.getColonCharacter();
 
     GridPane ledBank = new GridPane();
-    ledBank.setHgap(10);
-    ledBank.setVgap(10);
-    ledBank.setPadding(new Insets(0, 10, 0, 10));
-
-    // ledBank.setStyle("-fx-background-color: black;");
+    // ledBank.setStyle("-fx-background-color: rgba(20,20,20,0.95);");
+    ledBank.setStyle("-fx-background-color: transparent;");
     ledBank.setGridLinesVisible(true);
-    ledBank.setAlignment(Pos.BASELINE_CENTER);
+    ledBank.setAlignment(Pos.CENTER);
 
     ledBank.add(tensHourDigit, 0, 0);
     ledBank.add(onesHourDigit, 1, 0);
@@ -73,8 +70,9 @@ public class DigitalClock extends Application {
 
     Scene ledReadoutScene = new Scene(ledBank, screenW, screenH);
     primaryStage.setAlwaysOnTop(true);
-    primaryStage.setFullScreen(true);
-    primaryStage.setFullScreenExitHint("Click anywhere in the Window to exit Full Screen Mode");
+    // primaryStage.setFullScreen(true);
+    // primaryStage.setFullScreenExitHint("Click anywhere in the Window to exit Full
+    // Screen Mode");
     primaryStage.setScene(ledReadoutScene);
     primaryStage.show();
 
@@ -85,8 +83,22 @@ public class DigitalClock extends Application {
         primaryStage.setHeight(screenH);
       } else {
         primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitHint("Click anywhere in the Window to exit Full Screen Mode");
       }
     });
+
+    ChangeListener<Number> sizeListener = (ObservableValue<? extends Number> observable, Number oldValue,
+        Number newValue) -> {
+      double newWidth = ledReadoutScene.getWidth();
+      double newHeight = ledReadoutScene.getHeight();
+      double scaleFactor = Math.min(newWidth / screenW, newHeight / screenH);
+
+      ledBank.setScaleX(scaleFactor);
+      ledBank.setScaleY(scaleFactor);
+    };
+
+    ledReadoutScene.widthProperty().addListener(sizeListener);
+    ledReadoutScene.heightProperty().addListener(sizeListener);
   }
 
   private void updateClock(LedGenerator ledGen, GridPane ledBank) {
@@ -108,60 +120,14 @@ public class DigitalClock extends Application {
     ledBank.add(this.rightColonChar, 5, 0);
     ledBank.add(ledGen.getDigitItem(tensSecondStr), 6, 0);
     ledBank.add(ledGen.getDigitItem(onesSecondStr), 7, 0);
+
+    double scaleFactor = Math.min(ledBank.getWidth() / this.screenW, ledBank.getHeight() / this.screenH);
+    ledBank.setScaleX(scaleFactor);
+    ledBank.setScaleY(scaleFactor);
   }
 
   private String convertTimeToHMS(Date currTime) {
     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
     return sdf.format(currTime);
   }
-
-  // public GridPane getTensHourDigitOld() {
-  // GridPane digitGridPane = new GridPane();
-  // // set a grid layout of 7 rows and 5 columns column widths should be 3%, 8%,
-  // // 72%, 8%, 3% row heights should be 2%, 4%, 42%, 4%, 42%. 4%, 2% rows and
-  // // columns should have a 1px border
-  // digitGridPane.setStyle("-fx-background-color: dimgray; width: 100%; height:
-  // 100%;");
-  // digitGridPane.setGridLinesVisible(true);
-  // digitGridPane.setAlignment(Pos.BASELINE_CENTER);
-  // // digitGridPane.setHgap(10);
-  // // digitGridPane.setVgap(10);
-
-  // ColumnConstraints col1 = new ColumnConstraints();
-  // col1.setPrefWidth(6.0);
-  // ColumnConstraints col2 = new ColumnConstraints();
-  // col2.setPrefWidth(12.0);
-  // ColumnConstraints col3 = new ColumnConstraints();
-  // col3.setPrefWidth(120.0);
-  // ColumnConstraints col4 = new ColumnConstraints();
-  // col4.setPrefWidth(12.0);
-  // ColumnConstraints col5 = new ColumnConstraints();
-  // col5.setPrefWidth(6.0);
-  // digitGridPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
-
-  // VBox ulVertical = new VBox();
-  // ulVertical.setId("ulVertical"); // use for CSS targeting
-  // ulVertical.setStyle("-fx-background-color: red; width: 12px; height:
-  // 120px;");
-  // digitGridPane.add(ulVertical, 1, 2);
-
-  // RowConstraints row1 = new RowConstraints();
-  // row1.setPrefHeight(6.0);
-  // RowConstraints row2 = new RowConstraints();
-  // row2.setPrefHeight(12.0);
-  // RowConstraints row3 = new RowConstraints();
-  // row3.setPrefHeight(120.0);
-  // RowConstraints row4 = new RowConstraints();
-  // row4.setPrefHeight(12.0);
-  // RowConstraints row5 = new RowConstraints();
-  // row5.setPrefHeight(120.0);
-  // RowConstraints row6 = new RowConstraints();
-  // row6.setPrefHeight(12.0);
-  // RowConstraints row7 = new RowConstraints();
-  // row7.setPrefHeight(6.0);
-  // digitGridPane.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6,
-  // row7);
-
-  // return digitGridPane;
-  // }
 }

@@ -6,8 +6,9 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 public class LedGenerator {
-  private String vElStyle = " width: 12px; height: 120px;";
-  private String hElStyle = " width: 120px; height: 12px;";
+  private String verticalDimensions = " width: 12px; height: 120px;";
+  private String horizontalDimensions = " width: 120px; height: 12px;";
+  private String dotDimensions = "width: 12px; height: 12px;";
   private String elementOn = "-fx-background-color: red;";
   private String elementOff = "-fx-background-color: transparent;";
 
@@ -266,9 +267,9 @@ public class LedGenerator {
 
   public GridPane getColonCharacter() {
     VBox upperDot = new VBox();
-    upperDot.setStyle(this.elementOn.concat("width: 12px; height: 12px;"));
+    upperDot.setStyle(this.elementOn.concat(this.dotDimensions));
     VBox lowerDot = new VBox();
-    lowerDot.setStyle(this.elementOn.concat("width: 12px; height: 12px;"));
+    lowerDot.setStyle(this.elementOn.concat(this.dotDimensions));
 
     GridPane colonGridPane = new GridPane();
     colonGridPane.setAlignment(Pos.CENTER);
@@ -288,8 +289,8 @@ public class LedGenerator {
     row4.setPrefHeight(12.0);
     RowConstraints row5 = new RowConstraints();
     row5.setPrefHeight(84.0);
-    colonGridPane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
 
+    colonGridPane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
     colonGridPane.add(upperDot, 0, 1);
     colonGridPane.add(lowerDot, 0, 3);
 
@@ -330,19 +331,19 @@ public class LedGenerator {
   }
 
   public String getVElOnStyle() {
-    return this.elementOn.concat(this.vElStyle);
+    return this.elementOn;
   }
 
   public String getHElOnStyle() {
-    return this.elementOn.concat(this.hElStyle);
+    return this.elementOn;
   }
 
   public String getVElOffStyle() {
-    return this.elementOff.concat(this.vElStyle);
+    return this.elementOff;
   }
 
   public String getHElOffStyle() {
-    return this.elementOff.concat(this.hElStyle);
+    return this.elementOff;
   }
 
   public GridPane InitGridPane() {
