@@ -3,6 +3,14 @@
   "configurations": [
     {
       "type": "java",
+      "name": "DigitalClock",
+      "request": "launch",
+      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+      "mainClass": "DigitalClock",
+      "projectName": "digital-clock_817b5b0b"
+    },
+    {
+      "type": "java",
       "name": "App",
       "request": "launch",
       "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",

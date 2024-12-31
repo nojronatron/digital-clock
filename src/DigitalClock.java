@@ -10,7 +10,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class DigitalClock extends Application {
   private double screenW = 1000.0;
   private double screenH = 600.0;
   private Date currentTime = new Date();
