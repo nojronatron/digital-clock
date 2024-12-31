@@ -35,3 +35,6 @@ release.properties
 
 # Ignore JavaFX specific files
 *.fxml
+
+# ignore custom folders
+**/out
