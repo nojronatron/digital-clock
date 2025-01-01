@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "DigitalClock",
+      "request": "launch",
+      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+      "mainClass": "DigitalClock",
+      "projectName": "digital-clock_817b5b0b"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+      "mainClass": "App",
+      "projectName": "digital-clock_817b5b0b"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+      "mainClass": "App",
+      "projectName": "DigitalClock_63b4c17a"
+    },
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-17.0.13\\lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+      "mainClass": "App",
+      "projectName": "DigitalClock"
+    }
+  ]
+}
