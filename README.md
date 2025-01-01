@@ -2,7 +2,28 @@
 
 Digital Clock project based on Java and JavaFX.
 
-The primary goal of this project is to explore developing Java apps for Linux.
+## Goals
+
+- Explore developing Java apps for Linux.
+- Display a full-screen clock on a Raspberry Pi (or other IoT-like Raspbian or similar device).
+
+For the second goal, a 24-hour style clock is referenced by volunteers to timestamp events and activities during their deployment during support events.
+
+## Project Status
+
+- Is a JavaFX project.
+- Can be built for Windows.
+- Updates about once per second.
+- Looks like a fairly inexpensive LED display.
+- High contrast.
+- Responsive screen design.
+- Full-screen and "normal" window sizing supported.
+
+## Known Remaining Work
+
+- Check-in with primary contact to get feedback and next-sprint goals.
+- Better scale LED characters per screen size (some scalings make digits very difficult to interpret).
+- Build and run on Debian-derived Linux platform.
 
 ## Folder Structure
 
