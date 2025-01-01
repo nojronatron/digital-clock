@@ -6,6 +6,21 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 public class LedGenerator {
+  private static final double DIGIT_COL_PAD_PERCENT_WIDTH = 7.0; // 3.8;
+  private static final double DIGIT_COL_EL_PERCENT_WIDTH = 15.0; // 7.6;
+  private static final double DIGIT_COL_SPACE_PERCENT_WIDTH = 56.0;// 77.0;
+
+  private static final double DIGIT_ROW_PAD_PERCENT_HEIGHT = 2.1;
+  private static final double DIGIT_ROW_HEL_PERCENT_HEIGHT = 4.2;
+  private static final double DIGIT_ROW_VEL_PERCENT_HEIGHT = 41.2;
+
+  private static final double COLON_COL_PAD_PERCENT_WIDTH = 15.0;
+  private static final double COLON_COL_EL_PERCENT_WIDTH = 70.0;
+
+  private static final double COLON_ROW_PAD_PERCENT_HEIGHT = 30.0;
+  private static final double COLON_ROW_EL_PERCENT_HEIGHT = 4.4;
+  private static final double COLON_ROW_CENTERPAD_PERCENT_HEIGHT = 30.0;
+
   private String elementOn = "-fx-background-color: red;";
   private String elementOff = "-fx-background-color: transparent;";
 
@@ -274,23 +289,23 @@ public class LedGenerator {
 
     colonGridPane.getColumnConstraints().clear();
     ColumnConstraints col1 = new ColumnConstraints();
-    col1.setPercentWidth(15);
+    col1.setPercentWidth(COLON_COL_PAD_PERCENT_WIDTH);
     ColumnConstraints col2 = new ColumnConstraints();
-    col2.setPercentWidth(70);
+    col2.setPercentWidth(COLON_COL_EL_PERCENT_WIDTH);
     ColumnConstraints col3 = new ColumnConstraints();
-    col3.setPercentWidth(15);
+    col3.setPercentWidth(COLON_COL_PAD_PERCENT_WIDTH);
     colonGridPane.getColumnConstraints().addAll(col1, col2, col3);
 
     RowConstraints row1 = new RowConstraints();
-    row1.setPercentHeight(30);
+    row1.setPercentHeight(COLON_ROW_PAD_PERCENT_HEIGHT);
     RowConstraints row2 = new RowConstraints();
-    row2.setPercentHeight(4.4);
+    row2.setPercentHeight(COLON_ROW_EL_PERCENT_HEIGHT);
     RowConstraints row3 = new RowConstraints();
-    row3.setPercentHeight(30);
+    row3.setPercentHeight(COLON_ROW_CENTERPAD_PERCENT_HEIGHT);
     RowConstraints row4 = new RowConstraints();
-    row4.setPercentHeight(4.4);
+    row4.setPercentHeight(COLON_ROW_EL_PERCENT_HEIGHT);
     RowConstraints row5 = new RowConstraints();
-    row5.setPercentHeight(30);
+    row5.setPercentHeight(COLON_ROW_PAD_PERCENT_HEIGHT);
     colonGridPane.getRowConstraints().addAll(row1, row2, row3, row4, row5);
 
     colonGridPane.add(upperDot, 1, 1);
@@ -353,31 +368,31 @@ public class LedGenerator {
     digitGridPane.setAlignment(Pos.BASELINE_CENTER);
 
     ColumnConstraints col1 = new ColumnConstraints();
-    col1.setPercentWidth(3.8);
+    col1.setPercentWidth(DIGIT_COL_PAD_PERCENT_WIDTH);
     ColumnConstraints col2 = new ColumnConstraints();
-    col2.setPercentWidth(7.6);
+    col2.setPercentWidth(DIGIT_COL_EL_PERCENT_WIDTH);
     ColumnConstraints col3 = new ColumnConstraints();
-    col3.setPercentWidth(77.0);
+    col3.setPercentWidth(DIGIT_COL_SPACE_PERCENT_WIDTH);
     ColumnConstraints col4 = new ColumnConstraints();
-    col4.setPercentWidth(7.6);
+    col4.setPercentWidth(DIGIT_COL_EL_PERCENT_WIDTH);
     ColumnConstraints col5 = new ColumnConstraints();
-    col5.setPercentWidth(3.8);
+    col5.setPercentWidth(DIGIT_COL_PAD_PERCENT_WIDTH);
     digitGridPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5);
 
     RowConstraints row1 = new RowConstraints();
-    row1.setPercentHeight(2.1);
+    row1.setPercentHeight(DIGIT_ROW_PAD_PERCENT_HEIGHT);
     RowConstraints row2 = new RowConstraints();
-    row2.setPercentHeight(4.2);
+    row2.setPercentHeight(DIGIT_ROW_HEL_PERCENT_HEIGHT);
     RowConstraints row3 = new RowConstraints();
-    row3.setPercentHeight(41.2);
+    row3.setPercentHeight(DIGIT_ROW_VEL_PERCENT_HEIGHT);
     RowConstraints row4 = new RowConstraints();
-    row4.setPercentHeight(4.2);
+    row4.setPercentHeight(DIGIT_ROW_HEL_PERCENT_HEIGHT);
     RowConstraints row5 = new RowConstraints();
-    row5.setPercentHeight(41.2);
+    row5.setPercentHeight(DIGIT_ROW_VEL_PERCENT_HEIGHT);
     RowConstraints row6 = new RowConstraints();
-    row6.setPercentHeight(4.2);
+    row6.setPercentHeight(DIGIT_ROW_HEL_PERCENT_HEIGHT);
     RowConstraints row7 = new RowConstraints();
-    row7.setPercentHeight(2.1);
+    row7.setPercentHeight(DIGIT_ROW_PAD_PERCENT_HEIGHT);
     digitGridPane.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7);
 
     return digitGridPane;
