@@ -2,7 +2,39 @@
 
 Digital Clock project based on Java and JavaFX.
 
-The primary goal of this project is to explore developing Java apps for Linux.
+## Usage
+
+1. Launch the JAVA App (TBD) (see [Build And Run - Command Line](#build-and-run---command-line) below).
+2. The Digitial Clock appears on-screen at a set size. Use the corner or edge "handles" to change the clock size.
+3. Click the Digital Clock to set it to full screen mode.
+4. While in full-screen mode, click or press "X" on the keyboard to restore the window size to previous.
+5. Close the clock using the OS platform's Close buttons and/or key combinations.
+
+_Note_: When resizing the Digital Clock, there might be some Width and Height ratios that make the readout difficult to interpret. The Digital Clock will try its best to be readable in most cases.
+
+## Goals
+
+- Explore developing Java apps for Linux.
+- Display a full-screen clock on a Raspberry Pi (or other IoT-like Raspbian or similar device).
+
+For the second goal, a 24-hour style clock is referenced by volunteers to timestamp events and activities during their deployment during support events.
+
+## Project Status
+
+- Is a JavaFX project.
+- Can be built for Windows.
+- Updates about once per second.
+- Looks like a fairly inexpensive LED display.
+- High contrast.
+- Responsive screen design.
+- Full-screen and "normal" window sizing supported.
+- Click or press "X" key to exit full-screen mode.
+- Better scale LED characters per screen size (some scalings make digits very difficult to interpret).
+
+## Known Remaining Work
+
+- Check-in with primary contact to get feedback and next-sprint goals.
+- Build and run on Debian-derived Linux platform.
 
 ## Folder Structure
 
@@ -60,13 +92,21 @@ Run:
 1. Find the generated `.class` file and CHDIR to that directory for simplicity.
 1. Execute `java --module-path {JAVAFX_BIN_DIR} --add-modules {LIST_OF_NAMED_JAVAFX_MODULES} DigitalClock`
 
-## Publish and Deploy
+## Publish and Deploy - Linux
 
 Linux:
 
-1. Steps are TBD.
+- Includes RaspberryPi OS Bookworm and other Debian derivatives.
+- Support for ARCH platform but _not_ support ARM (this is a NetBeans limitation).
 
-References:
+Steps:
+
+1. Install Java JDK 17 (see [References](#references) for details).
+1. Install SnapD: `sudo apt install snapd`, reboot, then `sudo snap install snapd`
+1. Install Apache NetBeans: `sudo snap install netbeans --classic`
+1. ...more TBD...
+
+## References
 
 - [JavaFX CSS Reference](https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html)
 - [Build and Run for Windows](https://stackoverflow.com/questions/16137713/how-do-i-run-a-java-program-from-the-command-line-on-windows)
@@ -74,3 +114,5 @@ References:
 - [Package a Java App](https://stackoverflow.com/questions/65851854/how-to-build-java-native-executable-files-for-linux)
 - [Using GraalVM](https://www.graalvm.org/latest/reference-manual/native-image/guides/build-static-executables/)
 - [Using GraalVM Containers](https://www.graalvm.org/latest/reference-manual/native-image/guides/containerise-native-executable-and-run-in-docker-container/)
+- Adoptium.net [Instructions To Install Temurin to Linux](https://adoptium.net/installation/linux/) (a general prerequisite).
+- How to [Install NetBeans](https://snapcraft.io/install/netbeans/raspbian) (requires Java JDK v.17 or newer, Adoptium recommended).
