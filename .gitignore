@@ -37,7 +37,7 @@ release.properties
 *.fxml
 
 # Gradle wrapper directory
-gradle/wrapper/
+!gradle/wrapper/
 
 # IDE-specific files
 .classpath
