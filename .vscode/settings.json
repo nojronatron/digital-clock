@@ -1,6 +1,6 @@
 {
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic",
-  "editor.fontFamily": "Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Cascadia Code', Consolas, 'Fira Code', 'JetBrains Mono', 'Droid Sans Mono', monospace",
   "editor.fontSize": 18,
 }
