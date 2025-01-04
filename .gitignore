@@ -1,6 +1,7 @@
 # Ignore build output directories
-/build/
-/out/
+**/build/
+**/out
+**/distributions/
 
 # Java Lang Support for VSCode Extension must create its own bin directory
 /bin/
@@ -31,10 +32,35 @@ release.properties
 
 # Ignore Gradle specific files
 .gradle/
-/build/
 
 # Ignore JavaFX specific files
 *.fxml
 
-# ignore custom folders
-**/out
+# Gradle wrapper directory
+gradle/wrapper/
+
+# IDE-specific files
+.classpath
+.project
+
+# Local configuration files
+local.properties
+
+### Gradle ###
+!src/**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties
+
+# Cache
+.gradletasknamecache
+
+### Gradle Patch ###
+# Java heap dump
+*.hprof
