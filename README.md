@@ -103,12 +103,12 @@ Under the covers this batch file executes `java.exe` with the `-classpath` argum
 
 Linux:
 
-- Includes RaspberryPi OS Bookworm and other Debian derivatives.
-- Support for ARCH64 platform.
+Includes RaspberryPi OS Bookworm and other Debian derivatives.
 
-1. Meet all prerequisites.
-1. Download the pre-built TAR and extract it.
-1. Execute `.app` in the shell to launch the Digital Clock.
+1. Read through steps provided by Java JDK 21.x source, for example [Adoptium Linux Install Instructions](https://adoptium.net/installation/linux)
+1. Follow steps using `sudo` as necessary.
+1. For the final step select temurin 21 jdk like: `sudo apt install temurin-21-jdk`
+1. To verify Java Temurin 21 is installed type `java --version`
 
 ---
 
