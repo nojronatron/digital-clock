@@ -1,3 +1,5 @@
+package digitalclock;
+
 import java.util.Date;
 
 import javafx.application.Application;
@@ -150,4 +152,5 @@ public class DigitalClock extends Application {
     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
     return sdf.format(currTime);
   }
+
 }
