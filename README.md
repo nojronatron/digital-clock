@@ -2,6 +2,17 @@
 
 Digital Clock project based on Java and JavaFX.
 
+## Goals
+
+- Explore developing Java apps for Linux.
+- Display a full-screen clock on a Raspberry Pi (or other IoT-like Raspbian or similar device).
+
+For the second goal, a 24-hour style clock is referenced by volunteers to timestamp events and activities during their deployment during support events.
+
+## Known Issues
+
+- [ ] When launching the Java Package using the "app" script, a Warning message appears in the console stating "...unsupported JavaFX configuration...", and the app works as advertised.
+
 ## Usage
 
 1. Launch the JAVA App (TBD).
@@ -11,13 +22,6 @@ Digital Clock project based on Java and JavaFX.
 5. Close the clock using the OS platform's Close buttons and/or key combinations.
 
 _Note_: When resizing the Digital Clock, there might be some Width and Height ratios that make the readout difficult to interpret. The Digital Clock will try its best to be readable in most cases.
-
-## Goals
-
-- Explore developing Java apps for Linux.
-- Display a full-screen clock on a Raspberry Pi (or other IoT-like Raspbian or similar device).
-
-For the second goal, a 24-hour style clock is referenced by volunteers to timestamp events and activities during their deployment during support events.
 
 ## Project Status
 
@@ -59,6 +63,10 @@ Notes:
 
 ## Build and Run
 
+Build and Run tasks within VSCode are the same for Windows and Linux.
+
+Executing from Explorer (Windows) or Shell (Linux) is slightly different in that the Batch/Shell script that is run from the Deployment package (a ZIP or TAR file).
+
 ### Prerequisites
 
 - Java Eclipse Adoptium JDK 21.
@@ -68,63 +76,56 @@ Notes:
 - JavaFX Support by Shrey Pandya (addresses a bug in Language Support for Java(TM) by Red Hat).
 - A basic understanding of Gradle.
 
-### VSCode - Windows
+### Build
 
-Build:
+Linux and Windows:
 
-1. Meet the prerequisites listed above.
+1. Meet the prerequisites listed above on the target platform (Linux or Windows).
+1. Launch VSCode on the target platform. It will take a moment for Gradle to start-up and complete initialization tasks.
 1. Open the Command Palette and type `Gradle: Refresh Gradle Projects View` and run the command. There should be no errors in the Output window.
-1. Open the Command Palette and type `Gradle: Run a Gradle Build` and run the command. If the Gradle Build succeeds, it will output Java Archive files (a ZIP and a TAR).
+1. Open `Gradle` tool on the Activity Bar and expand the `digitalclock` node, `build` node, and execute a `clean` task, then a `build` task.
+1. Copy the output ZIP file from `.\app\build\distributions` to the location where you need it.
 
-Run:
+### Run - VSCode
 
-1. Build the app as described above.
+1. Build the app using `Gradle` tool on the Activity Bar.
+1. Expand `application` node to reveal the `run` task.
+1. Click the play icon to run, or the bug icon to run in debug mode.
+
+Alternative Run:
+
 1. Open Run and Debug (Ctrl + Shift + D) and allow VSCode to generate build and run settings.
 1. Click the Green play button to run the app.
 
-### Command Line - Windows
+### Run - PowerShell, Bash, etc
 
-Build:
-
+1. Execute a build (above) or acquire a built Package. Gradle output files are dumped in the `distributions` directory by default.
 1. Check that Java executable and version: `java --version`
-1. Execute `gradlew build`.
-1. View output files in the `distributions` directory.
+1. Extract the ZIP (or TAR) file contents to a new directory.
+1. Traverse the directory to find and execute the script to launch the Digital Clock.
 
-Run:
+Windows script is `app.bat` and Linux script is `app`. Under the covers these batch file execute `java.exe` with the `-classpath` arguments that point to all files in the extracted `lib` directory. So long as the prerequisites are met, the application should run.
 
-1. Check that Java executable and version: `java --version`
-1. Download the pre-built Java Archive file (or see the `distributions` directory if you followed the Build instructions above).
-1. Extract the ZIP file contents to a new directory.
-1. Traverse the directory to find `bin\app.bat` and execute it to launch the Digital Clock.
+Note: In Linux you might have to mark the shell script as executable using `chmod +x {filename}` before it will work.
 
-Under the covers this batch file executes `java.exe` with the `-classpath` arguments that point to all files in the extracted `lib` directory. So long as the prerequisites are met, the application should run.
-
-## Publish and Deploy - Linux
+## Prepare Java and JavaFX
 
 Linux:
 
-Includes RaspberryPi OS Bookworm and other Debian derivatives.
+Includes RaspberryPi Bookworm and other Debian derivatives.
 
 1. Read through steps provided by Java JDK 21.x source, for example [Adoptium Linux Install Instructions](https://adoptium.net/installation/linux)
 1. Follow steps using `sudo` as necessary.
 1. For the final step select temurin 21 jdk like: `sudo apt install temurin-21-jdk`
 1. To verify Java Temurin 21 is installed type `java --version`
+1. To confirm JavaFX is accessible, launch VSCode and perform a Gradle Build task.
 
----
+Windows:
 
-JAR:
+1. Download and install Adoptium JDK 21.x
+1. Launch VSCode and run a Gradle Build task.
 
-1. Start in the directory where `javac` output the build files to.
-1. Add necessary Library files. ???
-1. Create JAR: `jar --create --file=DigitalClock.jar --main-class=DigitalClock.class *.class`
-1. Execute the app: `java -jar DigitalClock.jar`
-
-Note about NetBeans to package this project in other ways:
-
-1. Install Java JDK 21 (see [References](#references) for details).
-1. Install SnapD: `sudo apt install snapd`, reboot, then `sudo snap install snapd`
-1. Install Apache NetBeans: `sudo snap install netbeans --classic`
-1. Configure NetBeans Options including Libraries, SDK version, etc.
+JavaFX should be downloaded from the Maven Repo and the build should succeed without errors.
 
 ## References
 
@@ -132,7 +133,6 @@ Note about NetBeans to package this project in other ways:
 - [Build and Run for Windows](https://stackoverflow.com/questions/16137713/how-do-i-run-a-java-program-from-the-command-line-on-windows)
 - [Build and Run: Linux](https://askubuntu.com/questions/145748/how-to-compile-a-java-file-on-ubuntu)
 - [Package a Java App](https://stackoverflow.com/questions/65851854/how-to-build-java-native-executable-files-for-linux)
-- [Using GraalVM](https://www.graalvm.org/latest/reference-manual/native-image/guides/build-static-executables/)
-- [Using GraalVM Containers](https://www.graalvm.org/latest/reference-manual/native-image/guides/containerise-native-executable-and-run-in-docker-container/)
 - Adoptium.net [Instructions To Install Temurin to Linux](https://adoptium.net/installation/linux/) (a general prerequisite).
 - How to [Install NetBeans](https://snapcraft.io/install/netbeans/raspbian) (requires Java JDK v.21 or newer, Adoptium recommended).
+- StackOverflow discussion about [JavaFX Warning Unsupported JavaFX configuration](https://stackoverflow.com/questions/67854139/javafx-warning-unsupported-javafx-configuration-classes-were-loaded-from-unna)
