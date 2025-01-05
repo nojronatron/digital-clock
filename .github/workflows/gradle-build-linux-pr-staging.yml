@@ -1,7 +1,7 @@
 name: Gradle Build Linux On PR To Staging
 
 on:
-  push:
+  pull_request:
     branches:
       - staging
 
@@ -31,23 +31,12 @@ jobs:
         name: build-artifacts
         path: app/build/distributions/app.tar
 
+    - name: Install GitHub CLI
+      run: sudo apt-get install gh
+
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v0.1.beta
-        release_name: Release v0.1.beta
-        draft: true
-        prerelease: true
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: app/build/distributions/app.tar
-        asset_name: app.tar
-        asset_content_type: application/x-tar
+      run: |
+        gh release create v1.0.0-PR${{ github.event.pull_request.number }} app/build/distributions/app.tar -t "Release v1.0.0-PR${{ github.event.pull_request.number }}" -n "Release for PR #${{ github.event.pull_request.number }}" --draft --prerelease
